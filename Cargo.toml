@@ -2,6 +2,7 @@
 name = "enc_chat"
 version = "0.1.0"
 edition = "2021"
+authors = ["William Batista <bootlegbilly@protonmail.ch>"]
 
 [profile.dev]
 opt-level = 0
@@ -13,7 +14,6 @@ opt-level = 3
 
 [profile.release]
 opt-level = 3
-# You don't need overflow checks if your ints never overflow *taps head*
 overflow-checks = false
 lto = "fat"
 panic = "abort"
