@@ -56,7 +56,7 @@ pub fn dec(encrypted_string: String, priv_key: String) -> String {
 
     let string_bytes = decompress(&unencrypted_compressed_bytes).unwrap();
 
-    String::from_utf8_lossy(&string_bytes).to_string()
+    String::from_utf8_lossy(&string_bytes).into_owned()
 
 }
 
@@ -67,5 +67,5 @@ pub fn b64_encode(string: String) -> String {
 
 #[wasm_bindgen]
 pub fn b64_decode(string: String) -> String {
-    String::from_utf8_lossy(&decode_config(string, base64::URL_SAFE_NO_PAD).unwrap()).to_string()
+    String::from_utf8_lossy(&decode_config(string, base64::URL_SAFE_NO_PAD).unwrap()).into_owned()
 }

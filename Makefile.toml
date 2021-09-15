@@ -35,6 +35,14 @@ args = ["--out-dir", "target/", "--out-name", "enc_chat", "--target", "web", "ta
 command = "wasm-bindgen"
 dependencies = ["cargo-build-web-debug", "wasm-bindgen-cli"]
 
+[tasks.copy_wasm]
+args = ["target/enc_chat_bg.wasm", "."]
+command = "cp"
+
+[tasks.copy_js]
+args = ["target/enc_chat.js", "."]
+command = "cp"
+
 [tasks.build-web]
 dependencies = ["bindgen"]
 
@@ -44,9 +52,9 @@ dependencies = ["bindgen-debug"]
 [tasks.serve]
 args = ["-a", "0.0.0.0:9000"]
 command = "basic-http-server"
-dependencies = ["build-web", "basic-http-server"]
+dependencies = ["build-web", "copy_wasm", "copy_js", "basic-http-server"]
 
 [tasks.serve-debug]
 args = ["-a", "0.0.0.0:9000"]
 command = "basic-http-server"
-dependencies = ["build-web-debug", "basic-http-server"]
+dependencies = ["build-web-debug", "copy_wasm", "copy_js", "basic-http-server"]
